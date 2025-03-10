@@ -1,3 +1,117 @@
+# Conway Game of Life -- Assembly x86
+
+## Overview
+
+This program is an implementation of the **Game of Life**, developed for the Computer Systems Architecture course using assembly language. The Game of Life is a cellular automaton created by mathematician John Conway. The program simulates the evolution of a grid of cells, where each cell can be either alive or dead, and the next state of the grid depends on the number of living neighbors each cell has.
+
+The project was divided into three distinct problems, and I completed the first and third problems, which are closely related. The first problem involved creating and running a simulator for the Game of Life, while the third problem introduced improvements and optimizations based on the first.
+
+The implementation uses a two-dimensional matrix, which can be customized by the user in terms of size (number of rows `m` and columns `n`) and the number of initially "alive" cells. The user can also set the number of generations (`k`) for which the game will be simulated.
+
+## Features
+
+- **Dynamic Grid Size**: The user can specify the number of rows (`m`) and columns (`n`).
+- **Initial Configuration**: The user can enter the coordinates of the initially "alive" cells.
+- **Generations Simulation**: The user can simulate `k` generations, with each generation calculated based on the Game of Life rules.
+- **Grid Output**: After the simulation, the final configuration of the grid is displayed.
+
+## How it Works
+
+### Input
+
+1. **m**: Number of grid rows.
+2. **n**: Number of grid columns.
+3. **p**: Number of initially "alive" cells.
+4. **p coordinate pairs**: Coordinates of the initially alive cells (row, column).
+5. **k**: Number of generations to simulate.
+
+### Output
+
+After running the program, the final state of the grid (after `k` generations) will be displayed. The grid cells are represented as `1` (alive) and `0` (dead).
+
+### Rules
+
+The program implements the standard Game of Life rules:
+- A cell remains "alive" if it has exactly 2 or 3 living neighbors.
+- A cell dies if it has fewer than 2 or more than 3 living neighbors.
+- A dead cell with exactly 3 living neighbors becomes alive in the next generation.
+
+### Steps
+
+1. **Grid Initialization**: The grid is set based on the specified dimensions and initial live cell positions.
+2. **Generations Simulation**: The simulation runs for `k` generations, updating the state of each cell based on its neighbors.
+3. **Displaying Final Grid**: After `k` generations, the final state of the grid is displayed.
+
+## Code Structure
+
+### Data Section
+
+- `matrix`: Space for the main grid.
+- `bord_matrix`: Space for the bordered matrix.
+- `copie_matrix`: Space for a copy of the matrix, used to store new values during the simulation.
+- Variables to store dimensions (`m`, `n`), number of initial live cells (`p`), and number of generations (`k`).
+- Other variables for managing coordinates, row and column indices, and neighbors.
+
+### Code Section
+
+- **Main Program**: Handles input for grid dimensions, initial live cells, and the number of generations to simulate.
+- **Simulation**: Logic for calculating the new state of the grid, using loops to traverse each cell and count neighbors.
+- **Output**: Displays the final state of the grid after all generations.
+
+### File I/O
+
+- The program reads data from an input file (`in.txt`) and writes the result to an output file (`out.txt`).
+- The `in.txt` file contains grid dimensions, initial live cell coordinates, and the number of generations.
+- The program writes the final grid to `out.txt`.
+
+## How to Run the Program
+
+### Compilation
+
+1. Write the input data into a file named `in.txt` (example below).
+2. Assemble and link the program using your assembler and linker:
+
+```bash
+nasm -f elf32 game_of_life.asm -o game_of_life.o
+ld -m elf_i386 -s -o game_of_life game_of_life.o
+```
+
+### Example Input File (`in.txt`)
+
+```plaintext
+5 5 3
+1 1
+2 2
+3 3
+3
+```
+
+This input defines:
+- A 5x5 grid (`m = 5`, `n = 5`).
+- 3 initial live cells at coordinates (1, 1), (2, 2), and (3, 3).
+- The simulation will run for 3 generations.
+
+### Running the Program
+
+To execute the program:
+
+```bash
+./game_of_life
+```
+
+## Technologies and Concepts Used
+
+- **Low-Level Programming** - Optimizing memory access and reducing latencies.
+- **Matrix Processing Algorithms** - Applying transition rules for cells.
+- **Efficient Data Structures** - Fast storage and access for the simulation grid.
+
+## Additional Information
+
+- The program uses **fscanf** and **fopen** to read from files and **fprintf** to write output.
+- It utilizes assembly-level control structures (loops, conditional instructions) to simulate generations and update the grid.
+
+___
+
 # Conway game of life -- Assembly x86
 
 ## Prezentare generală
