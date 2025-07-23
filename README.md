@@ -1,4 +1,4 @@
-# Conway Game of Life -- Assembly x86
+# Conway's Game of Life -- Assembly x86
 
 ## Overview
 
